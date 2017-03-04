@@ -4,17 +4,27 @@ function registration ($user,$email,$pwd,$dbh)
 {
 
 //Password gets hashed here before inserting
+if(Userduplicate($user,$email,$dbh)){
 	$pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
 	$sqliquery ="INSERT INTO `Account` (`user`, `email`, `pwd`) VALUES ('$user','$email','$pwd')";
 
 	mysqli_query($dbh,$sqliquery) or die(mysqli_error());
-
+	}
+	else{
+		exit
+	}
 }
-//Logging into the user requires us to compare password hashes. Fun shit yo
+//Logging into the user requires us to compare password hashes.
+//After the hashes checks out create a session with the User's name and account ID
+//Just
 function loggin ($user,$pwd,$dbh)
 {
 
+	$sqliquery = "SELECT 'username','pwd' FROM 'Account` WHERE 'username'= '$user' ";
+	$templogindata = mysqli_query($dbh,$sqliquery);
+// After logging in (which I'll do at some point). We start the session and assign variables to the session. From there it should be easy....right? erm...
+	session_start();
 
 }
 //Checks if the user has a dupe or not
