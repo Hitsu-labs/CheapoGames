@@ -7,7 +7,7 @@ function registration ($user,$email,$pwd,$dbh)
 if(Userduplicate($user,$email,$dbh)){
 	$pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-	$sqliquery ="INSERT INTO `Account` (`user`, `email`, `pwd`) VALUES ('$user','$email','$pwd')";
+	$sqliquery ="INSERT INTO `Account` (`Username`, `Email`, `Password`) VALUES ('$user','$email','$pwd')";
 
 	mysqli_query($dbh,$sqliquery) or die(mysqli_error());
 	return true;
@@ -22,14 +22,14 @@ if(Userduplicate($user,$email,$dbh)){
 function loggin ($user,$pwd,$dbh)
 {
 
-	$sqliquery = "SELECT 'accountid','username','pwd' FROM 'Account` WHERE 'username'= '$user' ";
+	$sqliquery = "SELECT 'ID','Username','Password' FROM 'Account` WHERE 'Username'= '$user' ";
 	$templogindata = mysqli_query($dbh,$sqliquery) or die(mysqli_error());
 	$row=mysqli_fetch_assoc($templogindata);
-	if(password_verify($pwd,$row["pwd"])){
+	if(password_verify($pwd,$row["Password"])){
 // After logging in (which I'll do at some point). We start the session and assign variables to the session. From there it should be easy....right? erm...
 	session_start();
 	$_SESSION["username"] = $user;
-	$_SESSION["accountid"] = $row["accountid"];
+	$_SESSION["accountid"] = $row["ID"];
 	return true;
 	}
 	else
@@ -40,8 +40,8 @@ function loggin ($user,$pwd,$dbh)
 //Checks if the user has a dupe or not
 function Userduplicate($user,$email,$dbh)
 {
-	$usercheck= "SELECT * FROM `Account` WHERE account ='$user'";
-	$emailcheck= "SELECT * FROM `Account` WHERE email = '$email'";
+	$usercheck= "SELECT * FROM `Account` WHERE Username ='$user'";
+	$emailcheck= "SELECT * FROM `Account` WHERE Email = '$email'";
 	$emailcount= mysqli_num_rows($emailcheck);
 	$usercount= mysqli_num_rows($usercheck);
 
