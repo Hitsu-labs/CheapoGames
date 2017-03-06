@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<form autocomplete="on">
+<fieldset>
+<legend>Sign Up</legend>
+
+<label for="user">User</label>
+<input type=text name="user" placeholder="Unique Username" maxlength="10" autocomplete="off"
+	 size="15" autofocus id="user"><br>
+
+<label for="pass">Password</label>
+<input type=text name="passwd" placeholder="Password" autocomplete="off" 
+	required size="15" id="pass"><br>
+
+<label for="confpass">Confirm Password</label>
+<input type=text name="confpasswd" placeholder="Re-Enter Password" autocomplete="off" 
+	required size="15" id="confpass" onblur="passwordCheck('pass','confpass')"><br>
+
+<label for="emailAddress">Email Address</label>
+<input type=text name="emailAddress" autocomplete="off" 
+	required size="15" id="emailAddress"><br>
+
+<label for="name">First Name</label>
+<input type=text name="fname" autocomplete="off" 
+	required size="15" id="name"><br>
+	
+<label for="cell">Last Name</label>
+<input type=text name="lname" autocomplete="off" 
+	required size="15" id="cell"><br>
+
+
+
+<input type=submit><br>
+</fieldset>
+</form>
+
+<style>
+fieldset{margin-left:40px;margin-top:40px;width:30%;padding:10px}
+label{background-color:#ffff00;float:left;width:125px}
+</style>
+
+<script>
+function passwordCheck(p1,p2){
+	pointer1=document.getElementById(p1)
+	pointer2=document.getElementById(p2)
+	if(pointer2.value!=pointer1.value){
+		pointer2.value=""
+		alert("Passwords do NOT match")
+	}
+}
+</script>
