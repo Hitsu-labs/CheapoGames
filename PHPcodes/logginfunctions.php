@@ -10,9 +10,10 @@ if(Userduplicate($user,$email,$dbh)){
 	$sqliquery ="INSERT INTO `Account` (`user`, `email`, `pwd`) VALUES ('$user','$email','$pwd')";
 
 	mysqli_query($dbh,$sqliquery) or die(mysqli_error());
+	return true;
 	}
 	else{
-		exit
+		return false;
 	}
 }
 //Logging into the user requires us to compare password hashes.
