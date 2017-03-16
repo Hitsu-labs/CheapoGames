@@ -6,7 +6,7 @@ private $logindb;
 
 public function __construct()
 {
-	$this->logindb = new mysqli("127.0.0.1","root","swag1,"login");
+	$this->logindb = new mysqli("127.0.0.1","root","swag1","login");
 
 	if ($this->logindb->connect_errno != 0)
 	{
@@ -32,7 +32,7 @@ public function validateLogin($username,$password)
 			return 1;// password match
 		}
 		echo "passwords did not match for $username".PHP_EOL;
-	}
+	
 	return 0;//no users matched username
 }
 }

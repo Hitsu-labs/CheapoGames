@@ -5,16 +5,22 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-$file = fopen("logout.txt","w");
+if (isset($argv[1]))
+{
+  $msg = $argv[1];
+}
+else
+{
+  $msg = "test message";
+}
 
 $request = array();
-$request['type'] = "login";
-$request['username'] = $argv[1];
-$request['password'] = $argv[2];
-$request['message'] = "HI";
+$request['type'] = "Login";
+$request['swag'] = "this theory works yay :D";
+$request['username'] = "steve";
+$request['password'] = "password";
+$request['message'] = $msg;
 $response = $client->send_request($request);
-echo fwrite($file,$request);
-fclose($file);
 //$response = $client->publish($request);
 
 echo "client received response: ".PHP_EOL;
