@@ -3,7 +3,9 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-
+include("logginfunctions.php");
+include("mysqlloggininfo");
+($dbh = mysqli_connect($hostname, $username, $password, $database)) or die ("SQL connection rejected, try again");
 function doLogin($username,$password)
 {
     // lookup username in databas
@@ -27,6 +29,10 @@ function requestProcessor($request)
       return doLogin($request['username'],$request['password']);
     case "validate_session":
       return doValidate($request['sessionId']);
+    case "loggingin":
+      return loggin($user,$pwd,$dbh);
+    case "register":
+      return registration($user,$email,$pwd,$dbh);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
