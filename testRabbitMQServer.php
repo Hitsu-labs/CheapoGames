@@ -35,6 +35,9 @@ function requestProcessor($request)
 		$rcode=1
 		return $rcode;
 	}
+	case "games":
+		$rcode = gamesearch($request['game'],$dbh);
+		return $rcode;
   }
   return $rcode;
 }

@@ -41,7 +41,7 @@ function loggin ($user,$pwd,$dbh)
 //Checks if the user has a dupe or not
 function Userduplicate($user,$email,$dbh)
 {
-//I really should have done this OOP style. Oh well.
+//I really should have done this OOP style. Oh well. Might as well continue for consistency
 	$usercheck= "SELECT * FROM `Account` WHERE Username ='$user'";
 	$emailcheck= "SELECT * FROM `Account` WHERE Email = '$email'";
 	$t= mysqli_query($dbh,$emailcheck);
@@ -58,9 +58,18 @@ function Userduplicate($user,$email,$dbh)
 }
 function gamesearch($game,$dbh)
 {
-	$gamecheck = "SELECT * FROM `Games` WHERE Title LIKE `$game`";
-	 
-
-
+	$gamecheck = "SELECT * FROM `Games` WHERE Title LIKE `$game` LIMIT 1";
+	$t= mysqli_query($dbh,$gamecheck);
+	$gameresultcount= mysqli_num_rows($t);
+	while ($row=mysqli_fetch_array($t))
+	{
+			$GameID = $row['GameID'];
+			$Title = $row['Title'];
+			$Summary = $row['Summary'];
+			$Game_URL = $row['Game_URL'];
+			$Picture_URL = $row['Picture_URL'];
+			$Price = $row['Price'];
+	}
+	$rcode = array($GameID,$Title,$Summary,$Game_URL,$Picture_URL,$Price);
 }
 ?>
