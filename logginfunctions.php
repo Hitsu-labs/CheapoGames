@@ -72,4 +72,14 @@ function gamesearch($game,$dbh)
 	}
 	$rcode = array($GameID,$Title,$Summary,$Game_URL,$Picture_URL,$Price);
 }
+
+function wishlistlogic($user,$dbh)
+{
+	$user= "SELECT * FROM `Account` WHERE Username ='$user'";
+	$templogindata = mysqli_query($dbh,$user) or die(mysqli_error());
+	$row=mysqli_fetch_assoc($templogindata);
+	$wishlistlogic = "SELECT * FROM `Wishlist` WHERE UserID = '$row['UserID']'";
+	
+	
+}
 ?>

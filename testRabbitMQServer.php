@@ -19,11 +19,6 @@ function requestProcessor($request)
   //Switch case to handle our different type of requests. 
   switch ($request['type'])
   {
-    case "login":
-      print($request['swag']);	
-      return doLogin($request['username'],$request['password']);
-    case "validate_session":
-      return doValidate($request['sessionId']);
     case "loggingin":
       if(loggin($request['username'],$request['password'],$dbh))
 	{
