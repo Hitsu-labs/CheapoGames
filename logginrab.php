@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <?php
 require_once('path.inc');
 require_once('get_host_info.inc');
@@ -16,7 +14,7 @@ print_r($response);
 if($response==0)
 {
 session_start();
-$_session['username'] = $request['username'];
+$_SESSION['username'] = $request['username'];
 echo " We're logged in";
 }
 else{
