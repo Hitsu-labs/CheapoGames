@@ -71,6 +71,7 @@ function gamesearch($game,$dbh)
 			$Price = $row['Price'];
 	}
 	$rcode = array($GameID,$Title,$Summary,$Game_URL,$Picture_URL,$Price);
+	return $rcode;
 }
 
 function wishlistlogic($user,$dbh)
@@ -79,7 +80,13 @@ function wishlistlogic($user,$dbh)
 	$templogindata = mysqli_query($dbh,$user) or die(mysqli_error());
 	$row=mysqli_fetch_assoc($templogindata);
 	$wishlistlogic = "SELECT * FROM `Wishlist` WHERE UserID = '$row['UserID']'";
-	
+	$wishlistdata = mysqli_query($dbh,$wishlistlogic);
+	while($row = mysqli_fetch_array($wishlistdata))
+	{
+		//Still thinking of the rest of logic... erm..
+		//I can do a query in here for each game just return a huge ass array
+		//But thats ugly, almost as ugly as not doing OOP or procedures..haha
+	}
 	
 }
 ?>
