@@ -28,7 +28,7 @@ function loggin ($user,$pwd,$dbh)
 /*	session_start();
 	$_SESSION["username"] = $user;
 	$_SESSION["accountid"] = $row["ID"];*/
-	$rcode = array($user,$row['ID'];
+	$rcode = array($user,$row['ID']);
 	return $rcode;
 	}
 	else
