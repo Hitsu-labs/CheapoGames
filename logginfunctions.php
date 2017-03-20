@@ -80,7 +80,7 @@ function wishlistlogic($user,$dbh)
 	$user= "SELECT * FROM `Account` WHERE Username ='$user'";
 	$templogindata = mysqli_query($dbh,$user) or die(mysqli_error());
 	$row=mysqli_fetch_assoc($templogindata);
-	$wishlistlogic = "SELECT * FROM `Wishlist` WHERE UserID = '$row['UserID']'";
+	$wishlistlogic = "SELECT * FROM `Wishlist` WHERE UserID = '$row[UserID]'";
 	$wishlistdata = mysqli_query($dbh,$wishlistlogic);
 	while($row = mysqli_fetch_array($wishlistdata))
 	{
@@ -92,9 +92,9 @@ function wishlistlogic($user,$dbh)
 	}
 	$counter = count($gameids);
 	//Nested loop query, holy crap.
-	for ($i = 0; $i<$counter; i++)
+	for ($i = 0; $i<$counter; $i++)
 	{
-		$templogindata = mysqli_query($dbh,"SELECT * FROM `Games` WHERE GameID = '$gameids[$i]";
+		$templogindata = mysqli_query($dbh,"SELECT * FROM `Games` WHERE GameID = '$gameids[$i]'") or die(mysqli_error());
 		while($row = mysqli_fetch_array($templogindata))
 		{
 			$rcode[$i] = $row['GameID'];

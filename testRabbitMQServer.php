@@ -27,17 +27,18 @@ function requestProcessor($request)
 	}
 	  else 
 	{
-		$rcode=1
+		$rcode=1;
 		return $rcode;
 	}
 	case "games":
 		$rcode = gamesearch($request['game'],$dbh);
 		return $rcode;
-  }
+  
 	case "profiler":
 		$rcode = wishlistlogic($request['username'],$dbh);
 		return $rcode;
   return $rcode;
+  }
 }
 $server = new rabbitMQServer("testRabbitMQ.ini","testServer");
 $server->process_requests('requestProcessor');
