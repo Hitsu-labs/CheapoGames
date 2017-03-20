@@ -2,13 +2,10 @@
 
 function registration ($user,$email,$pwd,$dbh)
 {
-
 //Password gets hashed here before inserting
 if(Userduplicate($user,$email,$dbh)){
 	$pwd = password_hash($pwd, PASSWORD_DEFAULT);
-
 	$sqliquery ="INSERT INTO `Account` (`Username`, `Email`, `Password`) VALUES ('$user','$email','$pwd')";
-
 	mysqli_query($dbh,$sqliquery) or die(mysqli_error());
 	return true;
 	}
@@ -58,6 +55,7 @@ function Userduplicate($user,$email,$dbh)
 }
 function gamesearch($game,$dbh)
 {
+	
 	$gamecheck = "SELECT * FROM `Games` WHERE Title LIKE `$game` LIMIT 1";
 	$t= mysqli_query($dbh,$gamecheck);
 	$gameresultcount= mysqli_num_rows($t);
@@ -76,6 +74,9 @@ function gamesearch($game,$dbh)
 
 function wishlistlogic($user,$dbh)
 {
+	$rcode = array();
+	$gameids = array();
+	$counter = 0;
 	$user= "SELECT * FROM `Account` WHERE Username ='$user'";
 	$templogindata = mysqli_query($dbh,$user) or die(mysqli_error());
 	$row=mysqli_fetch_assoc($templogindata);
@@ -83,10 +84,27 @@ function wishlistlogic($user,$dbh)
 	$wishlistdata = mysqli_query($dbh,$wishlistlogic);
 	while($row = mysqli_fetch_array($wishlistdata))
 	{
+		$gameids[$counter] = $row['GameID'];
+		$counter++;
 		//Still thinking of the rest of logic... erm..
 		//I can do a query in here for each game just return a huge ass array
 		//But thats ugly, almost as ugly as not doing OOP or procedures..haha
 	}
-	
+	$counter = count($gameids);
+	//Nested loop query, holy crap.
+	for ($i = 0; $i<$counter; i++)
+	{
+		$templogindata = mysqli_query($dbh,"SELECT * FROM `Games` WHERE GameID = '$gameids[$i]";
+		while($row = mysqli_fetch_array($templogindata))
+		{
+			$rcode[$i] = $row['GameID'];
+			$rcode[$i+1] = $row['Title'];
+			$rcode[$i+2] = $row['Summary'];
+			$rcode[$i+3] = $row['Game_URL'];
+			$rcode[$i+4] = $row['Picture_URL'];
+			$rcode[$i+5] = $row['Price'];	
+		}
+	}
+	return $rcode;
 }
 ?>
