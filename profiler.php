@@ -10,3 +10,11 @@ $request['username'] = $_SESSION['username'];
 $response = $client->send_request($request);
 $resultlen = count($response);
 ?>
+
+
+<html>
+<title> Welcome, <?php echo $_SESSION['username']; ?> The following is your wishlist! <title>
+<h1><?php for($i = 0; $i<$resultlen; $i++){
+	echo $response[$i];
+}?> </h1>
+</html>
