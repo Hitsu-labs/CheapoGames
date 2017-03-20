@@ -6,7 +6,7 @@ require_once('rabbitMQLib.inc');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 $request = array();
 $request['type'] = "games";
-$request['game'] = $_Post['game'];
+$request['game'] = $_POST['game'];
 $response = $client->send_request($request);
 $resultlen = count($response);
 ?>

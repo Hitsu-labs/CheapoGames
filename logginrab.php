@@ -7,18 +7,19 @@ $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 $request = array();
 $request['type'] = "loggingin";
 $request['swag'] = "this theory works yay :D";
-$request['username'] = $_Post['user'];
-$request['password'] = $_Post['password'];
+$request['username'] = $_POST['user'];
+$request['password'] = $_POST['password'];
 $response = $client->send_request($request);
 print_r($response);
-if($response==0)
+if($response==1)
 {
-session_start();
-$_SESSION['username'] = $request['username'];
-echo " We're logged in";
+header("Location: logging.html");
 }
 else{
-echo 'nope';
+session_start();
+$_SESSION['username'] = $request['username'];
+$_SESSION['ID'] = $response[1];
+echo " We're logged in";
 }
 ?>
 

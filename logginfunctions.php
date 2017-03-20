@@ -19,20 +19,22 @@ if(Userduplicate($user,$email,$dbh)){
 function loggin ($user,$pwd,$dbh)
 {
 
-
+	
 	$sqliquery = "SELECT 'ID','Username','Password' FROM 'Account` WHERE 'Username'= '$user' ";
 	$templogindata = mysqli_query($dbh,$sqliquery) or die(mysqli_error());
 	$row=mysqli_fetch_assoc($templogindata);
 	if(password_verify($pwd,$row["Password"])){
 // After logging in (which I'll do at some point). We start the session and assign variables to the session. From there it should be easy....right? erm...
-	session_start();
+/*	session_start();
 	$_SESSION["username"] = $user;
-	$_SESSION["accountid"] = $row["ID"];
-	return true;
+	$_SESSION["accountid"] = $row["ID"];*/
+	$rcode = array($user,$row['ID'];
+	return $rcode;
 	}
 	else
 	{
-	return FALSE;
+	$rcode = 1;
+	return $rcode;
 	}
 }
 //Checks if the user has a dupe or not
