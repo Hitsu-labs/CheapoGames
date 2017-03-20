@@ -34,6 +34,9 @@ function requestProcessor($request)
 		$rcode = gamesearch($request['game'],$dbh);
 		return $rcode;
   }
+	case "profiler":
+		$rcode = wishlistlogic($request['username'],$dbh);
+		return $rcode;
   return $rcode;
 }
 $server = new rabbitMQServer("testRabbitMQ.ini","testServer");
