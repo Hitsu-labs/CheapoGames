@@ -12,9 +12,8 @@ $resultlen = count($response);
 ?>
 
 <html>
-	<head>
-		<title> Game Search Results </title>
-	</head>
+	
+		 Game Search Results 
 	<h1>Game<h1>
 	<?php
 	for($i = 0; $i<$resultlen; $i++)
@@ -24,7 +23,7 @@ $resultlen = count($response);
 				echo "img src="$response[$i]" alt="Game Image" style="width:587px;height:469px;""
 			}
 			echo $response[$i];
-		
+			print "hello moto";	
 	}
 	?>
 </html>

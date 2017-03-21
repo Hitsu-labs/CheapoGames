@@ -23,7 +23,7 @@ function requestProcessor($request)
     case "loggingin":
 		$rcode=loggin($request['username'],$request['password'],$dbh);
 		
-		echo $rcode;
+//		echo $rcode;
 		return $rcode;
 	case "games":
 		$rcode = gamesearch($request['game'],$dbh);
@@ -43,10 +43,11 @@ function requestProcessor($request)
 		else
 		{
 			$rcode=1;
+			echo $rcode;
 			return $rcode;
 		}
   }
-	return $rcode;
+	return array("returnCode" => '0', 'message'=>"Server recieved request and processed");
 }
 $server = new rabbitMQServer("testRabbitMQ.ini","testServer");
 $server->process_requests('requestProcessor');
