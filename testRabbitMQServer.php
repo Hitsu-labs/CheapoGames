@@ -5,10 +5,11 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 include("logginfunctions.php");
 include("mysqlloggininfo.php");
-($dbh = mysqli_connect($hostname, $username, $password, $database)) or die ("SQL connection rejected, try again");
+//global $dbh = mysqli_connect($hostname, $username, $password, $database) or die ("SQL connection rejected, try again");
 
 function requestProcessor($request)
 {
+($dbh = mysqli_connect("localhost", "root", "swag1", "Games") or die ("SQL connection rejectedm try again"));
   global $rcode;
   echo "received request".PHP_EOL;
   var_dump($request);
@@ -21,6 +22,8 @@ function requestProcessor($request)
   {
     case "loggingin":
 		$rcode=loggin($request['username'],$request['password'],$dbh);
+		
+		echo $rcode;
 		return $rcode;
 	case "games":
 		$rcode = gamesearch($request['game'],$dbh);
@@ -28,11 +31,13 @@ function requestProcessor($request)
   
 	case "profiler":
 		$rcode = wishlistlogic($request['username'],$dbh);
+		echo $rcode;
 		return $rcode;
 	case "registration":
 		if(registration ($request['username'],$request['email'],$request['password'],$dbh))
 		{
 	        	$rcode=0;
+			echo $rcode;
 			return $rcode;
 		}
 		else

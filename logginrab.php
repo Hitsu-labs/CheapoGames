@@ -20,6 +20,7 @@ session_start();
 $_SESSION['username'] = $request['username'];
 $_SESSION['ID'] = $response[1];
 echo " We're logged in";
+header("Location: Hellouser.html");
 }
 ?>
 

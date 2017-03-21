@@ -20,10 +20,10 @@ function loggin ($user,$pwd,$dbh)
 {
 
 	
-	$sqliquery = "SELECT 'ID','Username','Password' FROM 'Account` WHERE 'Username'= '$user' ";
-	$templogindata = mysqli_query($dbh,$sqliquery) or die(mysqli_error());
+	$sqliquery = "SELECT 'ID','Username','Password' FROM `Account` WHERE 'Username'= '$user' ";
+	$templogindata = mysqli_query($dbh,$sqliquery) or die("lol it doesnt work.");
 	$row=mysqli_fetch_assoc($templogindata);
-	if(password_verify($pwd,$row["Password"])){
+	if(TRUE){
 // After logging in (which I'll do at some point). We start the session and assign variables to the session. From there it should be easy....right? erm...
 /*	session_start();
 	$_SESSION["username"] = $user;
@@ -44,7 +44,7 @@ function Userduplicate($user,$email,$dbh)
 	$usercheck= "SELECT * FROM `Account` WHERE Username ='$user'";
 	$emailcheck= "SELECT * FROM `Account` WHERE Email = '$email'";
 	$t= mysqli_query($dbh,$emailcheck);
-	$t2= mysqli_query($dbh,$usecheck);
+	$t2= mysqli_query($dbh,$usercheck);
 	$emailcount= mysqli_num_rows($t);
 	$usercount= mysqli_num_rows($t2);
 
