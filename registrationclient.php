@@ -12,13 +12,17 @@ $request['password'] = $_POST['passwd'];
 $request['email'] = $_POST['emailAddress'];
 $response = $client->send_request($request);
 print_r($response);
-
+//$client->close();
 if($response==0)
 {
 echo "Registration completed";
-header( 'Location: Logging_page.html');
+header( 'Location: logging.html');
+exit;
 }
 else{
 echo "Registration failed. Make sure your email or username is unique!";
-header( 'Location: Registration.html');
+header( 'Location: signup.html');
+exit;
 }
+exit;
+?>
