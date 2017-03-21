@@ -4,12 +4,12 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 include("logginfunctions.php");
-include("mysqlloggininfo.php");
+//include("mysqlloggininfo.php");
 //global $dbh = mysqli_connect($hostname, $username, $password, $database) or die ("SQL connection rejected, try again");
 
 function requestProcessor($request)
 {
-($dbh = mysqli_connect("localhost", "root", "swag1", "Games") or die ("SQL connection rejectedm try again"));
+($dbh = mysqli_connect("localhost", "root", "uayoPryde0705*", "V_Games") or die ("SQL connection rejectedm try again"));
   global $rcode;
   echo "received request".PHP_EOL;
   var_dump($request);
