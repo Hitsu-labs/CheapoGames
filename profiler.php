@@ -25,7 +25,8 @@ $resultlen = count($response);
 	}
 ?> </p>
 If no games were displayed please search a game to add to your wishlist~
-
+Click <a href="">here</a
 <button type="submit" formaction="search.html">
-
+<a href="search.html">here</a>
+<a href="logout.php">logout</a>
 </html>

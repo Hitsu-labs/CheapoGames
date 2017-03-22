@@ -9,6 +9,8 @@ $request['type'] = "games";
 $request['game'] = $_POST['game'];
 $response = $client->send_request($request);
 $resultlen = count($response);
+session_start();
+$_SESSION['gamesearch'] = $resultlen[1];
 ?>
 
 <html>
@@ -26,4 +28,9 @@ $resultlen = count($response);
 			print "hello moto";	
 	}
 	?>
+<form action="wishlistclient.php">
+<fieldset>
+<input type="submit">
+</fieldset>
+</form>
 </html>

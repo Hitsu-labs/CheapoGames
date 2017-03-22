@@ -46,6 +46,9 @@ function requestProcessor($request)
 			echo $rcode;
 			return $rcode;
 		}
+	case "addtowishlist":
+	$rcode = addtowishlist($user,$game,$dbh);
+	return $rcode;
   }
 	return array("returnCode" => '0', 'message'=>"Server recieved request and processed");
 }

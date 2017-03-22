@@ -109,4 +109,19 @@ function wishlistlogic($user,$dbh)
 	}
 	return $rcode;
 }
+function addtowishlist($user,$game,$dbh)
+{
+	$user = "SELECT * FROM `Account` WHERE Username = '$user'";
+	$templogindata = mysqli_query($dbh,$user) or die (mysqli_error());
+	$row=mysqli_fetch_assoc($templogindata);
+	$userid= $row['ID'];
+	$user = "SELECT * FROM `Account` WHERE Username = '$game'";
+	$templogindata = mysqli_query($dbh,$user);
+	$row=mysqli_fetch_assoc($templogindata);
+	$game = $row['GameID'];
+	$wishlogic = "INSERT INTO `Wishlist` (`AccountID`, `GameID`) VALUES ('$userid','$game')";
+	$templogindata = mysqli_query($dbh,$wishlogic);
+	$rcode = 0;
+	return $rcode;
+}
 ?>
