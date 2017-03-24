@@ -15,14 +15,15 @@ print_r($response);
 //$client->close();
 if($response==0)
 {
-echo "Registration completed";
-header( 'Location: logging.html');
-exit;
+	echo "Registration completed";
+	header( 'Location: logging.html');
+	exit;
 }
-else{
-echo "Registration failed. Make sure your email or username is unique!";
-header( 'Location: signup.html');
-exit;
+else
+{
+	echo "Registration failed. Make sure your email or username is unique!";
+	header( 'Location: signup.html');
+	exit;
 }
 exit;
 ?>

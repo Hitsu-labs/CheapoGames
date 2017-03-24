@@ -7,34 +7,35 @@ include("logginfunctions.php");
 //include("mysqlloggininfo.php");
 //global $dbh = mysqli_connect($hostname, $username, $password, $database) or die ("SQL connection rejected, try again");
 
+
 function requestProcessor($request)
 {
-($dbh = mysqli_connect("localhost", "root", "uayoPryde0705*", "V_Games") or die ("SQL connection rejectedm try again"));
-  global $rcode;
-  echo "received request".PHP_EOL;
-  var_dump($request);
-  if(!isset($request['type']))
-  {
-    return "ERROR: unsupported message type";
-  }
-  //Switch case to handle our different type of requests. 
-  switch ($request['type'])
-  {
-    case "loggingin":
+	($dbh = mysqli_connect("localhost", "root", "mayoPryde0705*", "V_Games") or die ("SQL connection rejected try again"));
+ 	global $rcode;
+ 	echo "received request".PHP_EOL;
+ 	var_dump($request);
+ 	if(!isset($request['type']))
+ 	{
+    		return "ERROR: unsupported message type";
+  	}
+  
+//Switch case to handle our different type of requests. 
+switch ($request['type'])
+{   	 
+	case "loggingin":
+		$log=$request['username'] . " " . $request['password'] . " " . date("m/d/Y") . " " . date("h:m:si") . "\n";
+		file_put_contents("log.txt",$log,FILE_APPEND);
 		$rcode=loggin($request['username'],$request['password'],$dbh);
-		
-//		echo $rcode;
 		return $rcode;
 	case "games":
 		$rcode = gamesearch($request['game'],$dbh);
 		return $rcode;
-  
-	case "profiler":
+  	case "profiler":
 		$rcode = wishlistlogic($request['username'],$dbh);
 		echo $rcode;
 		return $rcode;
 	case "registration":
-		if(registration ($request['username'],$request['email'],$request['password'],$dbh))
+		if(registration($request['username'],$request['email'],$request['password'],$dbh))
 		{
 	        	$rcode=0;
 			echo $rcode;
@@ -46,6 +47,9 @@ function requestProcessor($request)
 			echo $rcode;
 			return $rcode;
 		}
+	case "addtowishlist":
+		$rcode = addtowishlist($user,$game,$dbh);
+		return $rcode;
   }
 	return array("returnCode" => '0', 'message'=>"Server recieved request and processed");
 }

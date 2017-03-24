@@ -2,45 +2,58 @@
 
 function registration ($user,$email,$pwd,$dbh)
 {
-//Password gets hashed here before inserting
-if(Userduplicate($user,$email,$dbh)){
-	$pwd = password_hash($pwd, PASSWORD_DEFAULT);
-	$sqliquery ="INSERT INTO `Account` (`Username`, `Email`, `Password`) VALUES ('$user','$email','$pwd')";
-	mysqli_query($dbh,$sqliquery) or die(mysqli_error());
-	return true;
-	}
-	else{
-		return false;
-	}
-}
-//Logging into the user requires us to compare password hashes.
-//After the hashes checks out create a session with the User's name and account ID
-//Just
-function loggin ($user,$pwd,$dbh)
-{
 
-	
-	$sqliquery = "SELECT 'ID','Username','Password' FROM `Account` WHERE 'Username'= '$user' ";
-	$templogindata = mysqli_query($dbh,$sqliquery) or die("lol it doesnt work.");
-	$row=mysqli_fetch_assoc($templogindata);
-	if(TRUE){
-// After logging in (which I'll do at some point). We start the session and assign variables to the session. From there it should be easy....right? erm...
-/*	session_start();
-	$_SESSION["username"] = $user;
-	$_SESSION["accountid"] = $row["ID"];*/
-	$rcode = array($user,$row['ID']);
-	return $rcode;
+	if(Userduplicate($user,$email,$dbh))
+	{
+		//Password get's hashed before making query
+		$pwd = password_hash($pwd, PASSWORD_DEFAULT);
+		$sqliquery ="INSERT INTO `Account` (`Username`, `Email`, `Password`) VALUES ('$user','$email','$pwd')";
+		mysqli_query($dbh,$sqliquery) or die(mysqli_error());
+		return true;
 	}
 	else
 	{
-	$rcode = 1;
-	return $rcode;
+		return false;
 	}
 }
+
+//Logging into the user requires us to compare password hashes.
+//After the hashes checks out create a session with the User's name and account ID
+function loggin ($user,$pwd,$dbh)
+{
+       
+	$sqliquery = "SELECT * FROM `Account` WHERE Username = '$user'";
+	$templogindata = mysqli_query($dbh,$sqliquery) or die("lol it doesnt work.");
+	$row = mysqli_fetch_assoc($templogindata);
+	if($user == $row['Username'])
+	{
+		if(password_verify($pwd,$row['Password']))
+		{
+			$rcode = 0;
+			echo $rcode;
+			return $rcode;
+		}
+		else
+		{
+			$rcode = 1;
+			echo $rcode;
+			echo "Failed \n";
+			echo $row['Password'] . " ";
+			echo $pwd;
+			return $rcode;
+		}
+	}
+	else
+	{
+		$rcode = 1;
+		echo $rcode;
+		return $rcode;	
+	}
+}
+
 //Checks if the user has a dupe or not
 function Userduplicate($user,$email,$dbh)
 {
-//I really should have done this OOP style. Oh well. Might as well continue for consistency
 	$usercheck= "SELECT * FROM `Account` WHERE Username ='$user'";
 	$emailcheck= "SELECT * FROM `Account` WHERE Email = '$email'";
 	$t= mysqli_query($dbh,$emailcheck);
@@ -51,15 +64,16 @@ function Userduplicate($user,$email,$dbh)
 	if($emailcount>0 or $usercount>0)
 	{
 		return false;
-
 	}
-	return true;
+		return true;
 }
+
+//This function is used to search a game within the database
 function gamesearch($game,$dbh)
 {
 	
-	$gamecheck = "SELECT * FROM `Games` WHERE Title LIKE `$game` LIMIT 1";
-	$t= mysqli_query($dbh,$gamecheck);
+	$gamecheck = "SELECT * FROM `Games` WHERE Game_Name LIKE '$game' LIMIT 1";
+	$t = mysqli_query($dbh,$gamecheck);
 	$gameresultcount= mysqli_num_rows($t);
 	while ($row=mysqli_fetch_array($t))
 	{
@@ -74,6 +88,7 @@ function gamesearch($game,$dbh)
 	return $rcode;
 }
 
+//This is to view the Wishlist
 function wishlistlogic($user,$dbh)
 {
 	$rcode = array();
@@ -107,6 +122,23 @@ function wishlistlogic($user,$dbh)
 			$rcode[$i+5] = $row['Price'];	
 		}
 	}
+	return $rcode;
+}
+
+//This function is to add to the wishlist
+function addtowishlist($user,$game,$dbh)
+{
+	$user = "SELECT * FROM `Account` WHERE Username = '$user'";
+	$templogindata = mysqli_query($dbh,$user) or die (mysqli_error());
+	$row=mysqli_fetch_assoc($templogindata);
+	$userid= $row['ID'];
+	$user = "SELECT * FROM `Account` WHERE Username = '$game'";
+	$templogindata = mysqli_query($dbh,$user);
+	$row=mysqli_fetch_assoc($templogindata);
+	$game = $row['GameID'];
+	$wishlogic = "INSERT INTO `Wishlist` (`AccountID`, `GameID`) VALUES ('$userid','$game')";
+	$templogindata = mysqli_query($dbh,$wishlogic);
+	$rcode = 0;
 	return $rcode;
 }
 ?>

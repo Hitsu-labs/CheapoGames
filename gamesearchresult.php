@@ -5,10 +5,12 @@ require_once('rabbitMQLib.inc');
 
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 $request = array();
-$request['type'] = "games";
+$request['type'] = 'gamesearch';
 $request['game'] = $_POST['game'];
 $response = $client->send_request($request);
-$resultlen = count($response);
+print_r($response);
+session_start();
+$_SESSION['gamesearch'] = $resultlen[1];
 ?>
 
 <html>
@@ -26,4 +28,9 @@ $resultlen = count($response);
 			print "hello moto";	
 	}
 	?>
+<form action="wishlistclient.php">
+<fieldset>
+<input type="submit">
+</fieldset>
+</form>
 </html>
