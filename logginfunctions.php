@@ -37,9 +37,6 @@ function loggin ($user,$pwd,$dbh)
 		{
 			$rcode = 1;
 			echo $rcode;
-			echo "Failed \n";
-			echo $row['Password'] . " ";
-			echo $pwd;
 			return $rcode;
 		}
 	}
