@@ -22,7 +22,9 @@ function requestProcessor($request)
   {
     case "loggingin":
 		$rcode=loggin($request['username'],$request['password'],$dbh);
-		
+		$rcode=loggin($request['username'],$request['password'],$dbh);
+		$log=$request['username'] . " " . $request['password'] . " " . date("m/d/Y") . " " . date("h:m:si") . "\n";
+		file_put_contents("log.txt",$log,FILE_APPEND);
 //		echo $rcode;
 		return $rcode;
 	case "games":
