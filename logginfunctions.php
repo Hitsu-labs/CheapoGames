@@ -74,11 +74,9 @@ function gamesearch($game,$dbh)
 	$gameresultcount= mysqli_num_rows($t);
 	while ($row=mysqli_fetch_array($t))
 	{
-			$GameID = $row['GameID'];
-			$Title = $row['Title'];
-			$Summary = $row['Summary'];
-			$Game_URL = $row['Game_URL'];
-			$Picture_URL = $row['Picture_URL'];
+			$GameID = $row['ID_Game'];
+			$Title = $row['Game_Name'];
+			$Game_URL = $row['URL'];
 			$Price = $row['Price'];
 	}
 	$rcode = array($GameID,$Title,$Summary,$Game_URL,$Picture_URL,$Price);
@@ -94,11 +92,11 @@ function wishlistlogic($user,$dbh)
 	$user= "SELECT * FROM `Account` WHERE Username ='$user'";
 	$templogindata = mysqli_query($dbh,$user) or die(mysqli_error());
 	$row=mysqli_fetch_assoc($templogindata);
-	$wishlistlogic = "SELECT * FROM `Wishlist` WHERE UserID = '$row[UserID]'";
+	$wishlistlogic = "SELECT * FROM `Wishlist` WHERE AccountID = '$row[ID]'";
 	$wishlistdata = mysqli_query($dbh,$wishlistlogic);
 	while($row = mysqli_fetch_array($wishlistdata))
 	{
-		$gameids[$counter] = $row['GameID'];
+		$gameids[$counter] = $row['ID_Game'];
 		$counter++;
 		//Still thinking of the rest of logic... erm..
 		//I can do a query in here for each game just return a huge ass array
@@ -111,12 +109,10 @@ function wishlistlogic($user,$dbh)
 		$templogindata = mysqli_query($dbh,"SELECT * FROM `Games` WHERE GameID = '$gameids[$i]'") or die(mysqli_error());
 		while($row = mysqli_fetch_array($templogindata))
 		{
-			$rcode[$i] = $row['GameID'];
-			$rcode[$i+1] = $row['Title'];
-			$rcode[$i+2] = $row['Summary'];
-			$rcode[$i+3] = $row['Game_URL'];
-			$rcode[$i+4] = $row['Picture_URL'];
-			$rcode[$i+5] = $row['Price'];	
+			$rcode[$i] = $row['URL'];
+			$rcode[$i+1] = $row['Price'];
+			$rcode[$i+2] = $row['Game_Name'];
+			$rcode[$i+3] = $row['ID_Game'];
 		}
 	}
 	return $rcode;

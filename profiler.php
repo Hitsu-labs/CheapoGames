@@ -19,7 +19,7 @@ $resultlen = count($response);
 
 <html>
 <!This is the welcome message for the user>
-Welcome,<?php echo $_SESSION['username']; ?> The following is your wishlist!
+Welcome, <?php echo $_SESSION['username']; ?> The following is your wishlist!
 
 <p><?php for($i = 0; $i<$resultlen; $i++)
 {
@@ -27,10 +27,10 @@ Welcome,<?php echo $_SESSION['username']; ?> The following is your wishlist!
 }
 ?> 
 </p>
-If no games are displayed please search a game to add to your wishlist~
-Click <a href="profiler.php">Refresh Page</a>
-<a href="search.html">Search Here</a>
-<a href="logout.php">Logout</a>
+If no games are displayed please search a game to add to your wishlist ~ Please choose an option below <br>
+<a href="profiler.php">Refresh Page</a><br>
+<a href="search.html">Search Here</a><br>
+<a href="logout.php">Logout</a><br>
 </html>
 
 
