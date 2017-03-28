@@ -13,22 +13,25 @@ $response = $client->send_request($request);
 print_r($response);
 if($response==1)
 {
-header("Location: logging.html");
-exit;
+	header("Location: logging.html");
+	exit;
 }
-else{
-session_start();
-$_SESSION['username'] = $request['username'];
-$_SESSION['ID'] = $response[1];
-echo " We're logged in";
-header("Location: profiler.php");
-exit;
+else
+{
+	session_start();
+	$_SESSION['username'] = $request['username'];
+	$_SESSION['ID'] = $response[1];
+	echo " We're logged in";
+	header("Location: profiler.php");
+	exit;
 }
 exit;
 ?>
+
 <html>
 
 <title> Hello </title>
+
 </html>
 
 
