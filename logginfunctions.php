@@ -125,13 +125,28 @@ function addtowishlist($user,$game,$dbh)
 	$templogindata = mysqli_query($dbh,$user) or die (mysqli_error());
 	$row=mysqli_fetch_assoc($templogindata);
 	$userid= $row['ID'];
-	$user = "SELECT * FROM `Account` WHERE Username = '$game'";
+	$user = "SELECT * FROM `Games` WHERE Title = '$game'";
 	$templogindata = mysqli_query($dbh,$user);
 	$row=mysqli_fetch_assoc($templogindata);
 	$game = $row['GameID'];
 	$wishlogic = "INSERT INTO `Wishlist` (`AccountID`, `GameID`) VALUES ('$userid','$game')";
 	$templogindata = mysqli_query($dbh,$wishlogic);
 	$rcode = 0;
+	return $rcode;
+}
+//this function returns the populated amount of games in the databse
+function populatedgames($dbh)
+{
+	$gameq = "SELECT * FROM `Games`";
+	$resultantq = mysqli_query($dbh,$user);
+	$gameq = mysqli_num_rows($resultantq);
+	return $gameq;
+}
+//this function is made to generate a list of games from the database
+function gamebrowser($dbh)
+{
+	$gamecount=populatedgames($dbh);
+	
 	return $rcode;
 }
 ?>
