@@ -20,19 +20,11 @@ function requestProcessor($request)
 switch ($request['type'])
 
 {
-	case "QA":
+	case "deploy":
 		echo $request['version'];
 		//can probably make a version function? 
 		$output = shell_exec('./scpdeploy.sh notsure notsure');
-		//Okay so now I have to make a script that is called scpdeploy this command will deploy
-		//packages that are hosted on the deployment server
-	case "Devops":
-		//If its devops, the deployment server needs to prep it self for getting a SCP file.
-		// So the server should return a "Sure" or whatever to let the devops environment to 
-		//SCP it to the deployment server
-	case "Production":
-		//Same as QA.
-		echo $request['version'];
+		
 		
 }
 return "Something goofed, gotta check the ol cobwebs";
