@@ -6,10 +6,10 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 include("logginfunctions.php");
 
-function deployprocessor($deployer)
 
+
+function requestProcessor($request)
 {
-
 //So we have to setup a rabbitmq deployment message towards all of ourservers.
 
 // Starting off with getting a type. We check if its a QA server
@@ -37,8 +37,8 @@ switch ($request['type'])
 }
 return "Something goofed, gotta check the ol cobwebs";
 }
-$server = new rabbitMQServer("testrabbitMQ","testServer");
-$server->process_requests('deployprocessor');
+$server = new rabbitMQServer("testRabbitMQ.ini","deployServer");
+$server->process_requests('requestProcessor');
 exit();
 
 ?>
