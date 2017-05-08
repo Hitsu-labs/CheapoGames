@@ -1,7 +1,8 @@
 #!/usr/bin/sh
 cd ..
 cd ..
-tar -zxvf fulldeploy.tar.gz -C /tmp
+tar -zxvf fulldeploy$1.tar.gz -C /tmp
+echo $1>'cman'
 cd /tmp
 ls -la
 echo "Everything is there (hopefully)\n"
@@ -17,7 +18,7 @@ echo "Completed file move\n"
 echo "Attempting to boot up php server\n"
 cd /var/www/html/download
 
-case $1 in
+case $2 in
 "backend")
 	./testRabbitMQServer.php
 	;;
