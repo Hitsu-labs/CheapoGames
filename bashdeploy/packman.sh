@@ -3,9 +3,7 @@
 echo "compressing files within /Documents\n"
 cd ..
 cd ..
-
-#testing out zipping an entire directory
-tar -zcvf fulldeploy.tar.gz CheapoGames
-#probably will make the extraction script to run on the other servers.
-#So when its done extracting, just move those files to its appropiate places
+printf "What is the version of the file"
+echo $1>>"vman"
+tar -zcvf fulldeploy$1.tar.gz CheapoGames
 
