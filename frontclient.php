@@ -8,5 +8,6 @@ $client = new rabbitMQClient("testRabbitMQ.ini","deployServer");
 $request = array();
 $request['type'] = "deploy";
 shell_exec('bashdeploy/packman.sh');
+shell_exec('bashdeploy/sendman.sh');
 $response = $client->send_request($request);
 ?>
