@@ -1,6 +1,4 @@
-<input type="button" onclick="location.href='http://127.0.0.1/searchengine';" value="Search for another game"/><br><br>
-
-     <html>
+<html>
 	<section class="webdesigntuts-workshop"><br>
 	<form action="search.php" method="GET">		    
 		<input type="text" placeholder="What are you looking for?" name = "search">		    	
