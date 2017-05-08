@@ -24,7 +24,9 @@ switch ($request['type'])
 		echo $request['version'];
 		//can probably make a version function? 
 		$output = shell_exec('./scpdeploy.sh notsure notsure');
-		
+	case "front":
+		echo $request['version'];
+	//	$output = shell_exec('bashdeploy/unpackman');		
 		
 }
 return "Something goofed, gotta check the ol cobwebs";

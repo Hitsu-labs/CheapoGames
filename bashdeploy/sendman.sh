@@ -2,7 +2,7 @@
 
 cd ..
 cd ..
-declare -A iptable
+#declare -A iptable
 #iptable=( ["deploy"] = 192.168.1.4 ["front"] = 192.168.1.5 ["backend"]= 192.168.1.7 ["DMZ"] = 192.168.1.6)
 
 case $1 in
