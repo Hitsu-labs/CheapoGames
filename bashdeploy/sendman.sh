@@ -1,7 +1,8 @@
 #!/usr/bin/bash
 
+
 cd ..
-cd ..
+ls
 #declare -A iptable
 #iptable=( ["deploy"] = 192.168.1.4 ["front"] = 192.168.1.5 ["backend"]= 192.168.1.7 ["DMZ"] = 192.168.1.6)
 
@@ -23,3 +24,4 @@ case $1 in
 	scp vman mk\5\5\7@192.168.1.6
 	;;
 esac
+pwd
