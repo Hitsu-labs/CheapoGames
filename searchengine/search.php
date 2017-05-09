@@ -35,7 +35,7 @@ $construct .="AND title LIKE '%$search_each%'";
     
 }
   
-$constructs ="SELECT * FROM gamestop WHERE $construct";
+$constructs ="SELECT * FROM dmz WHERE $construct";
 $run = mysql_query($constructs);
     
 $foundnum = mysql_num_rows($run);
@@ -57,7 +57,7 @@ $start = isset($_GET['start']) ? $_GET['start']: '';
 $max_pages = ceil($foundnum / $per_page);
 if(!$start)
 $start=0; 
-$getquery = mysql_query("SELECT * FROM gamestop WHERE $construct LIMIT $start, $per_page");
+$getquery = mysql_query("SELECT * FROM dmz WHERE $construct LIMIT $start, $per_page");
   
 while($runrows = mysql_fetch_assoc($getquery))
 {
