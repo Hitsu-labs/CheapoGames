@@ -23,15 +23,14 @@ switch ($request['type'])
 	case "deploy":
 		echo $request['version'];
 	case "front":
-		
 		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version']);
 		echo $output;
-	/*case "backend":
-		echo $request['version'];
-		$output = shell_exec('bashdeploy/unpackman '.$request['version']);	
+	case "backend":
+		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version']);
+		echo $output;	
 	case "dmz":
-		echo $request['version'];
-		$output = shell_exec('bashdeploy/unpackman '.$request['version']);*/			
+		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version']);
+		echo $output;		
 }
 return "Something goofed, gotta check the ol cobwebs";
 }
