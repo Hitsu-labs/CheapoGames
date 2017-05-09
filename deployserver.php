@@ -25,12 +25,9 @@ switch ($request['type'])
 	case "front":
 		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version']);
 		echo $output;
-	case "backend":
-		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version']);
-		echo $output;	
-	case "dmz":
-		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version']);
-		echo $output;		
+	case "version":
+		$output = shell_exec('sh bashdeploy/ver.sh');
+		echo $output;
 }
 return "Something goofed, gotta check the ol cobwebs";
 }
