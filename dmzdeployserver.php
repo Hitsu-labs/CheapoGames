@@ -23,8 +23,8 @@ switch ($request['type'])
 	case "deploy":
 		echo $request['version'];
 	case "dmz":
-		echo $request['version'];
-		$output = shell_exec('bashdeploy/unpackman '.$request['version']);	
+		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version']);
+		echo $output;
 }
 return "Something goofed, gotta check the ol cobwebs";
 }
