@@ -15,7 +15,7 @@ case $1 in
 	scp fulldeploy$2.tar.gz vman shadowbroker@192.168.1.5:
 	scp vman shadowbroker@192.168.1.5
 	;;
-"backend")
+"back")
 	scp fulldeploy$2.tar.gz vman chilado@192.168.1.7:
 	scp vman chilado@192.168.1.7
 	;;

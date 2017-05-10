@@ -6,7 +6,7 @@ require_once('rabbitMQLib.inc');
 
 $client = new rabbitMQClient("testRabbitMQ.ini","deployServer");
 $request = array();
-$request['type'] = "backend";
+$request['type'] = "back";
 $request['version'] = $argv[2];
 $request['back']= $argv[1];
 $i=shell_exec('sudo sh bashdeploy/sendman.sh '.$argv[1].' '.$argv[2]); 
