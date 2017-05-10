@@ -29,7 +29,7 @@ Welcome, <?php echo $_SESSION['username']; ?> The following is your wishlist!
 </p>
 If no games are displayed please search a game to add to your wishlist ~ Please choose an option below <br>
 <a href="profiler.php">Refresh Page</a><br>
-<a href="search.html">Search Here</a><br>
+<a href="searchengine">Search Here</a><br>
 <a href="logout.php">Logout</a><br>
 </html>
 

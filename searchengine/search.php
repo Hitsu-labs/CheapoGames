@@ -17,7 +17,7 @@ if(strlen($search)<=1)
 echo "Search term too short";
 else{
 echo "<p style = 'font-family: Open Sans, sans-serif; font-size:28px; font-weight:300; letter-spacing: 1px; line-height:50px; text-align:center; display:block; text-transform: uppercase; padding-bottom:-10px'>SEARCH RESULTS FOR: <u><b>$search</b></u></p> <hr size='1';></br>";
-mysql_connect("localhost","root","kim020995");
+mysql_connect("localhost","root","mayoPryde0705*");
 mysql_select_db("gamestop");
 
 $search_exploded = explode (" ", $search);

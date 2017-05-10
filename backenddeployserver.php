@@ -22,7 +22,7 @@ switch ($request['type'])
 {
 	case "deploy":
 		echo $request['version'];
-	case "backend":
+	case "back":
 		$output = shell_exec('sudo sh bashdeploy/unpackman.sh '.$request['version'] .' '.$request['back']);
 		echo $output;
 	case "version":

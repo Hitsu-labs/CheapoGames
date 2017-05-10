@@ -9,7 +9,7 @@ include("logginfunctions.php");
 
 function requestProcessor($request)
 {
-	($dbh = mysqli_connect("localhost", "root","swag1", "Games") or die ("SQL connection rejected try again"));
+	($dbh = mysqli_connect("localhost", "root","mayoPryde0705*", "V_Games") or die ("SQL connection rejected try again"));
  	global $rcode;
  	echo "received request".PHP_EOL;
  	var_dump($request);
